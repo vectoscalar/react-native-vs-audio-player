@@ -1,5 +1,6 @@
-import { ImageStyle, Platform, StyleSheet, TextStyle, ViewStyle } from 'react-native'
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
+import { IS_IOS } from '@constants'
 import { AppColors, Spacing } from '@theme'
 
 interface IStyles {
@@ -14,7 +15,7 @@ interface IStyles {
 }
 export const styles: IStyles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: AppColors.secondary,
     flex: Spacing.space_1,
     justifyContent: 'space-around',
   },
@@ -39,7 +40,7 @@ export const styles: IStyles = StyleSheet.create({
   title: {
     color: AppColors.primary[700],
     fontSize: Spacing.space_32,
-    marginBottom: Platform.OS === 'ios' ? Spacing.space_12 : Spacing.space_0,
+    marginBottom: IS_IOS ? Spacing.space_12 : Spacing.space_0,
     textAlign: 'center',
   },
   artist: {

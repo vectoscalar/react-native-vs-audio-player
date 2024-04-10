@@ -15,6 +15,7 @@ const RepeatModeQueue: RepeatMode[] = [RepeatMode.Off, RepeatMode.Queue, RepeatM
 
 const LoopButton = () => {
   const [repeatMode, setRepeatMode] = useState<RepeatMode>(RepeatMode.Off)
+
   const handleRepeatModePress: PressableProps['onPress'] = async () => {
     try {
       const index = RepeatModeQueue.findIndex(ele => ele === repeatMode)

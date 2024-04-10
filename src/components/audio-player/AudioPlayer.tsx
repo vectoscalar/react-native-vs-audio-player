@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, Image, SafeAreaView, Text, View } from 'react-native'
+import { ActivityIndicator, Image, Text, View } from 'react-native'
 import TrackPlayer, { Track, useActiveTrack } from 'react-native-track-player'
 
 import {
@@ -20,19 +20,18 @@ const AudioPlayer = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [currentTrack, setCurrentTrack] = useState<Track>()
 
-  async function setPlayer() {
+  const { artwork, title, artist } = { ...currentTrack }
+  const setPlayer = async () => {
     let trackObject: Track | undefined
     setIsLoading(true)
     try {
       const trackIndex = await TrackPlayer.getActiveTrackIndex()
       trackObject = await TrackPlayer.getTrack(trackIndex as number)
-      console.log(`Title: ${trackObject?.title}`)
     } catch {
       await TrackPlayer.setupPlayer()
       await TrackPlayer.add(PLAYBACK_TRACKS)
       const trackIndex = await TrackPlayer.getActiveTrackIndex()
       trackObject = await TrackPlayer.getTrack(trackIndex as number)
-      console.log(`Title: ${trackObject?.title}`)
     } finally {
       setIsLoading(false)
       setCurrentTrack(trackObject)
@@ -46,16 +45,16 @@ const AudioPlayer = () => {
   return isLoading ? (
     <ActivityIndicator />
   ) : (
-    <SafeAreaView style={styles.container}>
-      {currentTrack?.artwork ? (
+    <View style={styles.container}>
+      {artwork ? (
         <View style={styles.imageContainer}>
-          <Image source={{ uri: currentTrack.artwork }} style={styles.image} resizeMode="contain" />
+          <Image source={{ uri: artwork }} style={styles.image} resizeMode="contain" />
         </View>
       ) : null}
       <View style={styles.songDetailsContainer}>
         <Progress />
-        <Text style={styles.title}>{currentTrack?.title}</Text>
-        <Text style={styles.artist}>{currentTrack?.artist}</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.artist}>{artist}</Text>
       </View>
       <View style={styles.mediaControlContainer}>
         <VolumeControl />
@@ -69,7 +68,7 @@ const AudioPlayer = () => {
         <SpeedMenu />
         <FullScreenButton />
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 

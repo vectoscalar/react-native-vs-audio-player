@@ -1,12 +1,14 @@
 import React from 'react'
-import { PermissionsAndroid, Platform, TouchableOpacity } from 'react-native'
+import { Alert, PermissionsAndroid, Platform, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 
 import RNFetchBlob from 'rn-fetch-blob'
 
+import { IS_IOS } from '@constants'
+
 const DownloadButton = () => {
   const requestStoragePermission = async () => {
-    if (Platform.OS === 'ios') {
+    if (IS_IOS) {
       downloadFile()
     } else {
       try {
@@ -16,7 +18,7 @@ const DownloadButton = () => {
         if ('granted' === PermissionsAndroid.RESULTS.GRANTED) {
           downloadFile()
         } else {
-          console.log('Please grant permission')
+          Alert.alert('Please grant permission')
         }
       } catch (err) {
         console.log('Error', err)
@@ -26,7 +28,7 @@ const DownloadButton = () => {
 
   const downloadFile = () => {
     const { dirs } = RNFetchBlob.fs
-    const dirToSave = Platform.OS === 'ios' ? dirs.DocumentDir : dirs.DownloadDir
+    const dirToSave = IS_IOS ? dirs.DocumentDir : dirs.DownloadDir
     const configfb = {
       fileCache: true,
       addAndroidDownloads: {
@@ -50,16 +52,16 @@ const DownloadButton = () => {
     RNFetchBlob.config(configOptions || {})
       .fetch('GET', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', {})
       .then(res => {
-        if (Platform.OS === 'ios') {
+        if (IS_IOS) {
           RNFetchBlob.fs.writeFile(configfb.path, res.data, 'base64')
           RNFetchBlob.ios.previewDocument(configfb.path)
         }
-        if (Platform.OS === 'android') {
-          console.log('File downloaded')
+        if (!IS_IOS) {
+          Alert.alert('File downloaded')
         }
       })
       .catch(e => {
-        console.log('File Download==>', e)
+        console.log('Error in downloading.', e)
       })
   }
 

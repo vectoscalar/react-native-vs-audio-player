@@ -15,6 +15,7 @@ const SkipButton = (props: ISkipButtonProps) => {
   const progress = useProgress()
   const currentPosition: number = progress.position
   const totalDuration: number = progress.duration
+
   const jumpForward: PressableProps['onPress'] = async () => {
     if (currentPosition >= totalDuration) {
       Alert.alert('The song is already at the end')

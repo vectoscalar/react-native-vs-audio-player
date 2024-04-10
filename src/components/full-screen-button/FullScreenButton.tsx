@@ -5,8 +5,11 @@ import Icon from 'react-native-vector-icons/Feather'
 const FullScreenButton = () => {
   const [fullScreen, setFullScreen] = useState<boolean>(false)
 
+  const handleScreenControl = () => {
+    setFullScreen(!fullScreen)
+  }
   return (
-    <TouchableOpacity onPress={() => setFullScreen(!fullScreen)}>
+    <TouchableOpacity onPress={handleScreenControl}>
       <StatusBar
         backgroundColor={fullScreen ? 'white' : 'black'}
         barStyle={fullScreen ? 'light-content' : 'dark-content'}
