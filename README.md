@@ -18,12 +18,12 @@
 ```jsx
 <AudioPlayer
   backgroundThemeColor={'red'}
-  download={true}
-  fullScreen={true}
-  muteControl={true}
-  repeatMode={true}
-  skipButtons={true}
-  speedControl={true}
+  download
+  fullScreen
+  muteControl
+  repeatMode
+  skipButtons
+  speedControl
   timer={[{ label: '5 mins', value: 300000 }]}
   trackBarColor={'red'}
   playerControlColor={'red'}
@@ -32,18 +32,18 @@
 
 ## Props
 
-| Prop                 | Description                                                                                   |
-| -------------------- | --------------------------------------------------------------------------------------------- |
-| backgroundThemeColor | It is used to change the background color of the audio component.                             |
-| download             | It is used to allow users to download the current song.                                       |
-| fullScreen           | It is used to show the audio player on full screen.                                           |
-| muteControl          | It is used to mute and play the audio.                                                        |
-| repeatMode           | It is used to apply repeat mode effects namely: repeat queue, repeat one-time and repeat-off. |
-| skipButtons          | It is used to show the skip buttons to allow users to skip the audio forward and backward.    |
-| speedControl         | It is used to control the speed of the audio.                                                 |
-| timer                | It is used to stop the audio player after given time.                                         |
-| trackBarColor        | It is used to change the color of the audio player track bar.                                 |
-| playerControlColor   | It is used to change the color of the controls of the audio player.                           |
+| Prop                 | Type             | Values                                         | Description                                                                                   |
+| -------------------- | ---------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| backgroundThemeColor | string           | any color name or hex code                     | It is used to change the background color of the audio component.                             |
+| download             | boolean          | true/false                                     | It is used to allow users to download the current song.                                       |
+| fullScreen           | boolean          | true/false                                     | It is used to show the audio player on full screen.                                           |
+| muteControl          | boolean          | true/false                                     | It is used to mute and play the audio.                                                        |
+| repeatMode           | boolean          | true/false                                     | It is used to apply repeat mode effects namely: repeat queue, repeat one-time and repeat-off. |
+| skipButtons          | boolean          | true/false                                     | It is used to show the skip buttons to allow users to skip the audio forward and backward.    |
+| speedControl         | boolean          | true/false                                     | It is used to control the speed of the audio.                                                 |
+| timer                | array of objects | {label:'time in mins',value:'time in seconds'} | It is used to stop the audio player after given time.                                         |
+| trackBarColor        | string           | any color name or hex code                     | It is used to change the color of the audio player track bar.                                 |
+| playerControlColor   | string           | any color name or hex code                     | It is used to change the color of the controls of the audio player.                           |
 
 **Note:** All the props are passed to the audio-player component.
 
