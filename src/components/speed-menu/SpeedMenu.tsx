@@ -3,7 +3,7 @@ import { Text, View } from 'react-native'
 import SelectDropdown from 'react-native-select-dropdown'
 import TrackPlayer from 'react-native-track-player'
 
-import { SPEED_OPTIONS } from '@constants'
+import { SPEED_OPTIONS, SpeedRate } from '@constants'
 import { AppColors } from '@theme'
 
 import { styles } from './speedMenu-styles'
@@ -16,7 +16,7 @@ const SpeedMenu = () => {
     return (
       <View style={styles.dropdownButtonStyle}>
         <Text style={styles.dropdownButtonTxtStyle}>
-          {(selectedItem && selectedItem.title) || '1x'}
+          {(selectedItem && selectedItem.title) || SpeedRate.speed_1}
         </Text>
       </View>
     )

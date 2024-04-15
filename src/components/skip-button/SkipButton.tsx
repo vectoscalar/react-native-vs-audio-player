@@ -8,9 +8,10 @@ import { AppColors, Spacing } from '@theme'
 
 interface ISkipButtonProps {
   forward: boolean
+  playerControlColor: string
 }
 const SkipButton = (props: ISkipButtonProps) => {
-  const { forward } = props
+  const { forward, playerControlColor } = props
   const iconName: string = forward ? 'rotate-cw' : 'rotate-ccw'
   const progress = useProgress()
   const currentPosition: number = progress.position
@@ -34,7 +35,11 @@ const SkipButton = (props: ISkipButtonProps) => {
   }
   return (
     <Pressable onPress={forward ? jumpForward : jumpBackward}>
-      <Icon name={iconName} size={Spacing.space_30} color={AppColors.tertiary} />
+      <Icon
+        name={iconName}
+        size={Spacing.space_30}
+        color={playerControlColor || AppColors.tertiary}
+      />
     </Pressable>
   )
 }

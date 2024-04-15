@@ -14,9 +14,22 @@ import {
 } from '@components'
 import { PLAYBACK_TRACKS } from '@constants'
 
+import SleepTimer from '../sleep-timer/SleepTimer'
+
 import { styles } from './audioPlayer-styles'
 
-const AudioPlayer = () => {
+const AudioPlayer = ({
+  backgroundThemeColor,
+  download,
+  fullScreen,
+  muteControl,
+  playerControlColor,
+  repeatMode,
+  skipButtons,
+  speedControl,
+  trackBarColor,
+  timer,
+}) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [currentTrack, setCurrentTrack] = useState<Track>()
 
@@ -45,28 +58,29 @@ const AudioPlayer = () => {
   return isLoading ? (
     <ActivityIndicator />
   ) : (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: backgroundThemeColor }]}>
       {artwork ? (
         <View style={styles.imageContainer}>
           <Image source={{ uri: artwork }} style={styles.image} resizeMode="contain" />
         </View>
       ) : null}
       <View style={styles.songDetailsContainer}>
-        <Progress />
+        <Progress trackBarColor={trackBarColor} />
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.artist}>{artist}</Text>
       </View>
       <View style={styles.mediaControlContainer}>
-        <VolumeControl />
-        <SkipButton forward={false} />
-        <PlayPauseButton />
-        <SkipButton forward />
-        <LoopButton />
+        {muteControl && <VolumeControl playerControlColor={playerControlColor} />}
+        {skipButtons && <SkipButton forward={false} playerControlColor={playerControlColor} />}
+        <PlayPauseButton playerControlColor={playerControlColor} />
+        {skipButtons && <SkipButton forward playerControlColor={playerControlColor} />}
+        {repeatMode && <LoopButton playerControlColor={playerControlColor} />}
       </View>
       <View style={styles.footerContainer}>
-        <DownloadButton />
-        <SpeedMenu />
-        <FullScreenButton />
+        {download && <DownloadButton />}
+        {speedControl && <SpeedMenu />}
+        {timer && <SleepTimer timerOptions={timer} />}
+        {fullScreen && <FullScreenButton />}
       </View>
     </View>
   )

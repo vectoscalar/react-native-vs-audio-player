@@ -11,7 +11,7 @@ const FullScreenButton = () => {
   return (
     <TouchableOpacity onPress={handleScreenControl}>
       <StatusBar
-        backgroundColor={fullScreen ? 'white' : 'black'}
+        backgroundColor={fullScreen ? 'white' : 'white'}
         barStyle={fullScreen ? 'light-content' : 'dark-content'}
       />
       <Icon name={fullScreen ? 'minimize' : 'maximize'} size={24} />

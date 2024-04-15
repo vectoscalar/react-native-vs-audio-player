@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { Pressable, PressableProps, View } from 'react-native'
-import TrackPlayer, { RepeatMode } from 'react-native-track-player'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import React, { useEffect, useState } from 'react';
+import { Pressable, PressableProps, View } from 'react-native';
+import TrackPlayer, { RepeatMode } from 'react-native-track-player';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { AppColors, Spacing } from '@theme'
+
+
+import { AppColors, Spacing } from '@theme';
+
 
 const RepeatModeIcons: Record<RepeatMode, string> = {
   [RepeatMode.Off]: 'repeat-off',
@@ -13,7 +16,7 @@ const RepeatModeIcons: Record<RepeatMode, string> = {
 
 const RepeatModeQueue: RepeatMode[] = [RepeatMode.Off, RepeatMode.Queue, RepeatMode.Track]
 
-const LoopButton = () => {
+const LoopButton = ({ playerControlColor }: { playerControlColor :string}) => {
   const [repeatMode, setRepeatMode] = useState<RepeatMode>(RepeatMode.Off)
 
   const handleRepeatModePress: PressableProps['onPress'] = async () => {
@@ -36,7 +39,7 @@ const LoopButton = () => {
     <View>
       <Pressable onPress={handleRepeatModePress}>
         <Icon
-          color={AppColors.tertiary}
+          color={playerControlColor || AppColors.tertiary}
           name={RepeatModeIcons[repeatMode]}
           size={Spacing.space_30}
         />

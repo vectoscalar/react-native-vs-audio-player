@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { AppColors, Spacing } from '@theme'
 
-const VolumeControl = () => {
+const VolumeControl = ({ playerControlColor }: { playerControlColor: string }) => {
   const [isVolumeOn, setIsVolumeOn] = useState<boolean>(true)
 
   const handleVolumeChange: PressableProps['onPress'] = async () => {
@@ -20,7 +20,7 @@ const VolumeControl = () => {
       <Icon
         name={isVolumeOn ? 'volume-high' : 'volume-off'}
         size={Spacing.space_30}
-        color={AppColors.tertiary}
+        color={playerControlColor || AppColors.tertiary}
       />
     </Pressable>
   )

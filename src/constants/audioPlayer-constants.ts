@@ -6,7 +6,7 @@ export const JumpInterval = {
 }
 
 export const IS_IOS = Platform.OS === 'ios'
-export enum SPEED_RATE {
+export enum SpeedRate {
   speed_0_5 = '0.5x',
   speed_1 = '1x',
   speed_1_5 = '1.5x',

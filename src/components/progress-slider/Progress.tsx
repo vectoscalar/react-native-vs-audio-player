@@ -8,7 +8,7 @@ import { AppColors } from '@theme'
 
 import { styles } from './progress-styles'
 
-const Progress = () => {
+const Progress = ({ trackBarColor }: { trackBarColor: string }) => {
   const { position, duration } = useProgress()
 
   const formatTime = (seconds: number) => {
@@ -31,9 +31,9 @@ const Progress = () => {
         style={styles.container}
         value={position}
         maximumValue={duration}
-        minimumTrackTintColor={AppColors.tertiary}
+        minimumTrackTintColor={trackBarColor || AppColors.tertiary}
         maximumTrackTintColor={AppColors.primary[700]}
-        thumbTintColor={AppColors.tertiary}
+        thumbTintColor={trackBarColor || AppColors.tertiary}
         onValueChange={value => handleProgress(value)}
       />
       <View style={styles.timeContainer}>

@@ -17,14 +17,14 @@ const playTrack = async () => {
     console.error(err)
   }
 }
-const PlayPauseButton = () => {
+const PlayPauseButton = ({ playerControlColor }: { playerControlColor: string }) => {
   const playbackState = usePlaybackState()
   return (
     <TouchableOpacity onPress={playTrack}>
       <Icon
         name={playbackState.state === State.Playing ? 'pause' : 'play'}
         size={50}
-        color={AppColors.tertiary}
+        color={playerControlColor || AppColors.tertiary}
       />
     </TouchableOpacity>
   )
