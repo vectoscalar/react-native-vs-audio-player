@@ -35,15 +35,7 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'unicorn/filename-case': [
-      'error',
-      {
-        cases: {
-          camelCase: true,
-          pascalCase: true,
-        },
-      },
-    ],
+    'unicorn/filename-case': 'off',
     'semi': ['error', 'never'],
     'jest/no-disabled-tests': 'warn',
     'jest/no-focused-tests': 'error',
@@ -60,6 +52,8 @@ module.exports = {
     'no-nested-ternary': 'off',
     'no-use-before-define': 'off',
     'arrow-body-style': 'off',
+    'import/prefer-default-export': 'off',
+    'unicorn/prevent-abbreviations': 'off',
   },
   overrides: [
     {

@@ -2,6 +2,7 @@
   "extends": "@react-native/typescript-config/tsconfig.json",
   "include": ["./**/*", "./**/.*"],
   "compilerOptions": {
+    "jsx": "react",
     "baseUrl": ".",
     "paths": {
       "@assets": ["./src/assets"],

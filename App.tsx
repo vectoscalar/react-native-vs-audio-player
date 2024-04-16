@@ -1,27 +1,37 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 
-import { DefaultTheme, NavigationContainer } from '@react-navigation/native'
+import { AudioPlayer } from '@components'
 
-import { AppNavigator } from '@navigation'
-import { AppColors } from '@theme'
+import { styles } from './app-styles.ts'
 
-import { styles } from './app-styles'
-
-const AppTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: AppColors.secondary,
-  },
+export interface ITimerProps {
+  label: string
+  value: number
 }
 
-const App = () => {
+function App(): React.JSX.Element {
+  const timerOptions: ITimerProps[] = [
+    { label: '5 mins', value: 300000 },
+    { label: '10 mins', value: 600000 },
+    { label: '15 mins', value: 900000 },
+    { label: '30 mins', value: 1800000 },
+    { label: '45 mins', value: 2700000 },
+  ]
   return (
     <SafeAreaView style={styles.container}>
-      <NavigationContainer theme={AppTheme}>
-        <AppNavigator />
-      </NavigationContainer>
+      <AudioPlayer
+        download={true}
+        fullScreen={true}
+        muteControl={true}
+        repeatMode={true}
+        skipButtons={true}
+        speedControl={true}
+        trackBarColor={''}
+        backgroundThemeColor={''}
+        playerControlColor={''}
+        timer={timerOptions}
+      />
     </SafeAreaView>
   )
 }
